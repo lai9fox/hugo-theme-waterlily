@@ -1,21 +1,25 @@
-baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'WaterLily'
 
+[menus]
 [[menus.main]]
-name = 'Home'
-pageRef = '/'
-weight = 10
-
+  identifier = "categories"
+  name = "Categories"
+  url = "/categories/"
+  weight = 10
+  params = { icon = "categories" }
 [[menus.main]]
-name = 'Posts'
-pageRef = '/posts'
-weight = 20
-
+  identifier = "tags"
+  name = "Tags"
+  url = "/tags/"
+  weight = 20
+  params = { icon = "tags" }
 [[menus.main]]
-name = 'Tags'
-pageRef = '/tags'
-weight = 30
+  identifier = "archives"
+  name = "Archives"
+  url = "/archives/"
+  params = { icon = "archives" }
+  weight = 30
 
 [module]
   [module.hugoVersion]

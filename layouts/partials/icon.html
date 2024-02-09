@@ -1,0 +1,13 @@
+{{/*  
+  使用 svg 文件作为图标
+
+  example:
+  {{ partial "icon.html" "your icon name" }}
+*/}}
+
+<span class="inline-block relative h-4 w-4 top-[0.125rem]">
+  {{- $fname:=print "assets/svg/" . ".svg" -}}
+  {{- $path:="<path" -}}
+  {{- $fill:="<path fill=\" currentColor\"" -}}
+  {{ replace (readFile $fname) $path $fill | safeHTML }}
+</span>
