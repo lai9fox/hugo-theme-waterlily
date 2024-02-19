@@ -1,8 +1,77 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+  
+
+  {{/*  是否分类页面  */}}
+  {{ $isTaxonomy := eq .Kind "taxonomy" }}
+  {{/*  是否术语页面  */}}
+  {{ $isTerm := eq .Kind "term" }}
+
+  <section class="h-full w-full py-8">
+    {{ if $isTerm }}
+      {{ $paginator := .Paginate .Pages }}
+      <h3 class="text-2xl">
+        <a href="{{ .Parent.RelPermalink }}">{{ .Parent.Name }}</a>
+        <sup>{{ printf "%s" ">>" }}</sup>
+        <a href="{{ .RelPermalink }}">{{ .Name }}</a>
+      </h3>
+      {{ partial "article.html" $paginator.Pages }}
+      {{ partial "pagination.html" $paginator }}
+    {{ else if $isTaxonomy }}
+
+      {{/* 复数分类名称 */}}
+      {{ $taxonomyName := .Data.Plural }}
+      {{/* { term: weightedPages } */}}
+      {{ $taxonomyObject := .Data.Terms }}
+      {{/* 是否是分类页面 */}}
+      {{ $isCategories := eq (lower $taxonomyName) "categories" }}
+      {{/* 是否是标签页面 */}}
+      {{ $isTags := eq (lower $taxonomyName) "tags" }}
+
+      <h3 class="text-2xl">{{ .Title }}</h3>
+      {{ if $isCategories }}
+        {{ partial "taxonomy_categories.html" $taxonomyObject }}
+      {{ else if $isTags }}
+        {{ partial "taxonomy_tags.html" $taxonomyObject }}
+      {{ end }}
+
+    {{ end }}
+  </section>
+{{ end }}
+
+{{/*
+  分类页面
+  context: .Data.Terms
+*/}}
+{{ define "partials/taxonomy_categories.html" }}
+  {{ $taxonomyObj := . }}
+  <ul class="w-full flex flex-col py-4 gap-4">
+    {{ range $taxonomyName, $weightedPages := $taxonomyObj }}
+      <li class="h-16 flex-row-center border-b px-4">
+        <h3 class="text-xl flex-1">
+          {{ partial "icon.html" "hash" }}
+          <a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
+        </h3>
+        <span class="text-2xl font-bold italic">{{ .Count }}</span>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
+
+{{/*  
+  标签页面
+  context: .Data.Terms
+*/}}
+{{ define "partials/taxonomy_tags.html" }}
+  {{ $taxonomyObj := . }}
+  <ul class="py-4 w-full flex gap-4 flex-wrap">
+    {{ range $taxonomyObj }}
+      <li class="h-16 flex-row-center px-4 border">
+        <h3 class="text-xl flex-1">
+          {{ partial "icon.html" "tag" }}
+          <a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
+        </h3>
+        <sup class="font-bold text-base italic">{{ .Count }}</sup>
+      </li>
+    {{ end }}
+  </ul>
 {{ end }}

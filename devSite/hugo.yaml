@@ -1,0 +1,23 @@
+title: WaterLilyS
+# paginate: 1
+hasCJKLanguage: true
+menus:
+  main:
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 10
+      params:
+        icon: categories
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+      params:
+        icon: tags
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      params:
+        icon: archives
+      weight: 30

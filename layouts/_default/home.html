@@ -1,7 +1,10 @@
+{{/*  首页  */}}
+
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+  {{/*  TODO: 将 posts 改为动态配置，默认值为 "posts"  */}}
+  {{ $pages := where site.RegularPages "Type" "posts" }}
+  {{/*  TODO: 可配置的分页大小  */}}
+  {{ $paginator := .Paginate $pages }}
+  {{ partial "article.html" $paginator.Pages }}
+  {{ partial "pagination.html" $paginator }}
 {{ end }}

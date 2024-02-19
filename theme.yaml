@@ -1,0 +1,25 @@
+name: hugo-theme-waterlily
+license: MIT
+licenselink: 'https://github.com/lai9fox/hugo-theme-waterlily/LICENSE'
+description: Theme description
+homepage: 'https://github.com/lai9fox/hugo-theme-waterlily'
+demosite: 'https://owner.github.io/repo'
+tags:
+  - blog
+  - company
+features:
+  - some
+  - awesome
+  - features
+authors:
+  - name: Name of author
+    homepage: Website of author
+  - name: Name of author
+    homepage: Website of author
+author:
+  name: Your name
+  homepage: Your website
+original:
+  author: Name of original author
+  homepage: Website of original author
+  repo: 'https://github.com/owner/repo'

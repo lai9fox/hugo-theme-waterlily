@@ -1,0 +1,75 @@
+{{/*  
+  分页模版
+  context: Paginator
+*/}}
+
+{{ $paginator := . }}
+{{/*  是否有前一页  */}}
+{{ $hasPrev := $paginator.HasPrev }}
+{{/*  是否有后一页  */}}
+{{ $hasNext := $paginator.HasNext }}
+{{/*  当前页码  */}}
+{{ $currentPage := $paginator.PageNumber }}
+{{/*  分页数量  */}}
+{{ $totalPage := $paginator.TotalPages }}
+{{/*  总元素数量  */}}
+{{ $totalElement := $paginator.TotalNumberOfElements }}
+{{/*  左侧 ...  */}}
+{{ $leftMore := and (ge $currentPage 4) (ge $totalPage 6) }}
+{{/*  右侧 ...  */}}
+{{ $rightMore := and (le $currentPage (add $totalPage -3)) (ge $totalPage 6) }}
+
+{{ $liTagClass := "h-8 w-8" }}
+{{ $aTagClass := "inline-block h-full w-full" }}
+
+<nav class="w-full px-4">
+  <ul class="flex-row-center text-xl leading-8 text-center">
+    {{/*  占位符  */}}
+    <li class="flex-1" />
+
+    {{/*  上一页  */}}
+    {{ if gt $currentPage 1 }}
+      <li class="{{ $liTagClass }}">
+        <a class="{{ $aTagClass }}" href="{{ $paginator.Prev.URL }}">{{partial "icon.html" "left" }}</a>
+      </li>
+    {{ end }}
+    {{/*  首页  */}}
+    <li class="{{ $liTagClass }}">
+      <a class="{{ $aTagClass }}" href="{{ $paginator.First.URL }}">1</a>
+    </li>
+
+    {{if $leftMore }}<li class="{{ $liTagClass }}">...</li>{{ end }}
+    
+    {{ if gt (add $currentPage -1) 1 }}
+      <li class="{{ $liTagClass }}">
+        <a class="{{ $aTagClass }}" href="{{ $paginator.Prev.URL }}">{{ add $currentPage -1 }}</a>
+      </li>
+    {{ end }}
+    
+    {{ if and (gt $currentPage 1) (ne $currentPage $totalPage) }}
+      <li class="{{ $liTagClass }}">{{ $currentPage }}</li>
+    {{ end }}
+    
+    {{ if lt (add $currentPage 1) $totalPage }}
+      <li class="{{ $liTagClass }}">
+        <a class="{{ $aTagClass }}" href="{{ $paginator.Next.URL }}">{{ add $currentPage 1 }}</a>
+      </li>
+    {{ end }}
+    
+    {{ if $rightMore }}<li class="{{ $liTagClass }}">...</li>{{ end }}
+
+    {{/* 尾页 */}}
+    {{ if gt $totalPage 1 }}
+      <li class="{{ $liTagClass }}">
+        <a class="{{ $aTagClass }}" href="{{ $paginator.Last.URL }}">{{ $totalPage }}</a>
+      </li>
+    {{ end }}
+    
+    {{/*  下一页  */}}
+    {{ if lt $currentPage $totalPage }}
+      <li class="{{ $liTagClass }}">
+        <a class="{{ $aTagClass }}" href="{{ $paginator.Next.URL }}">{{ partial "icon.html" "right" }}</a>
+      </li>
+    {{ end }}
+  </ul>
+</nav>

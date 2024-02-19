@@ -3,15 +3,15 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body class="w-full bg-slate-50 h-dvh flex flex-col">
-  <header class="h-16 border-b fixed top-0 left-0 right-0 flex-cross-center bg-slate-100">
+<body class="w-full bg-slate-100 h-dvh flex flex-col">
+  <header class="h-16 border-b fixed top-0 left-0 right-0 flex-cross-center bg-slate-100 z-50">
     <div class="basic-responsive-width flex items-center justify-between">
       {{ partial "header.html" . }}
     </div>
   </header>
   <main class="w-full flex justify-center flex-1 mt-16">
     <div class="basic-responsive-width">
-      {{block "main" . }}{{ end }}
+      {{ block "main" . }}{{ end }}
     </div>
   </main>
   <footer class="h-16 w-full flex-cross-center shrink-0">

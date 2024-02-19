@@ -2,11 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* 响应式宽度 */
 .basic-responsive-width {
   @apply w-full xl:max-w-6xl
 }
-
+/* flex 行列居中 */
 .flex-cross-center {
   @apply flex items-center justify-center
+}
+/* flex 行居中 */
+.flex-row-center {
+  @apply flex items-center
+}
+/* flex 列居中 */
+.flex-col-center {
+  @apply flex justify-center
 }
