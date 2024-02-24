@@ -1,17 +1,10 @@
-<h1 class="text-3xl font-semibold">
-  <a href="/">{{ site.Title }}</a>
-</h1>
-
-<nav>
-  <ul class="flex gap-4">
-    {{ range site.Menus.main }}
-    <li>
-      <a id="{{ .Identifier }}" href="{{ .URL }}">
-        {{ if .Params.icon }}{{ partial "icon.html" .Params.icon }}{{ end }}
-        <span>{{ .Name }}</span>
-      </a>
-    </li>
-    {{ end }}
-  </ul>
-</nav>
-
+<div class="basic-responsive-width flex-row-center justify-between">
+  <h1 class="text-3xl font-semibold"><a href="/">{{ site.Title }}</a></h1>
+  <nav>
+    <ul class="flex gap-4">
+      {{ range site.Menus.main }}
+      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </nav>
+</div>

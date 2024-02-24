@@ -1066,6 +1066,10 @@ video {
   top: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -1078,6 +1082,11 @@ video {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 .mb-2 {
@@ -1187,6 +1196,10 @@ video {
 
 .border-b {
   border-bottom-width: 1px;
+}
+
+.border-t {
+  border-top-width: 1px;
 }
 
 .bg-slate-100 {
@@ -1305,4 +1318,16 @@ video {
 .flex-col-center {
   display: flex;
   justify-content: center;
+}
+
+/* 自定义样式 */
+
+@font-face {
+  font-family: "Jetbrains Mono";
+
+  src: url("/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+html {
+  font-family: "Jetbrains Mono";
 }

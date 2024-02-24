@@ -1,5 +1,37 @@
+{{ $isDev := eq hugo.Environment "development" }}
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
-{{ partialCached "head-css.html" . }}
-{{ partialCached "head-js.html" . }}
+<title>
+  {{- if .IsHome -}}
+    {{ site.Title }}
+  {{- else -}}
+    {{ printf "%s | %s" .Title site.Title }}
+  {{- end -}}
+</title>
+
+{{/*  css  */}}
+{{ with resources.Get "css/compiled-tailwind.css" }}
+  {{ if $isDev }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ else }}
+    {{ with . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/*  js  */}}
+{{- with resources.Get "js/main.js" }}
+  {{- if $isDev }}
+    {{- with . | js.Build }}
+      <script src="{{ .RelPermalink }}"></script>
+    {{- end }}
+  {{- else }}
+    {{- $opts := dict "minify" true }}
+    {{- with . | js.Build $opts | fingerprint }}
+      <script src="{{ .RelPermalink }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
+    {{- end }}
+  {{- end }}
+{{- end }}
+

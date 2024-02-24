@@ -18,3 +18,13 @@
 .flex-col-center {
   @apply flex justify-center
 }
+
+/* 自定义样式 */
+@font-face {
+  font-family: "Jetbrains Mono";
+  src: url("/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+html {
+  font-family: "Jetbrains Mono";
+}
