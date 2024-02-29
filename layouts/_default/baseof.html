@@ -3,17 +3,15 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body class="w-full bg-slate-100">
-  <header class="h-16 border-b fixed top-0 left-0 right-0 flex-cross-center bg-slate-100 z-50">
+<body class="w-full flex flex-col h-dvh">
+  <header class="h-16 border-b bg-white fixed top-0 left-0 right-0 flex-cross-center z-50">
     {{ partial "header.html" . }}
   </header>
-  <main class="w-full flex-col-center my-16">
-    <div class="basic-responsive-width">
-      {{ block "main" . }}{{ end }}
-    </div>
+  <main class="w-full flex-col-center mt-16 my-12 flex-1">
+    {{ block "main" . }}{{ end }}
   </main>
-  {{/*  <footer class="h-16 bg-slate-100 border-t fixed bottom-0 left-0 right-0 flex-cross-center">
+  <footer class="h-16 border-t bottom-0 left-0 right-0 flex-cross-center shrink-0">
     {{ partial "footer.html" . }}
-  </footer>  */}}
+  </footer>
 </body>
 </html>

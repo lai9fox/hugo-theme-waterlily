@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{ $pages := where site.RegularPages "Type" "posts" }}
 
-  <section class="h-full w-full py-8">
+  <section class="basic-responsive-width py-8">
     <h3 class="text-2xl">{{ .Title }}</h3>
     <div class="w-full flex flex-col">
       {{ range $pages.GroupByDate "2006" }}

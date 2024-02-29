@@ -3,11 +3,12 @@
 
   example:
   {{ partial "icon.html" "your icon name" }}
+
 */}}
 
+{{ $svgName := print "assets/svg/" . ".svg" }}
+{{ $svgContent := readFile $svgName }}
+
 <span class="inline-block relative h-4 w-4">
-  {{- $fname:=print "assets/svg/" . ".svg" -}}
-  {{- $path:="<path" -}}
-  {{- $fill:="<path fill=\" currentColor\"" -}}
-  {{ replace (readFile $fname) $path $fill | safeHTML }}
+  {{ replace $svgContent "<svg" "<svg class=\"fill-current w-full h-full\"" | safeHTML }}
 </span>

@@ -5,6 +5,9 @@
   {{ $pages := where site.RegularPages "Type" "posts" }}
   {{/*  TODO: 可配置的分页大小  */}}
   {{ $paginator := .Paginate $pages }}
-  {{ partial "article.html" $paginator.Pages }}
-  {{ partial "pagination.html" $paginator }}
+  
+  <section class="basic-responsive-width flex flex-col justify-between">
+    {{ partial "article.html" $paginator.Pages }}
+    {{ partial "pagination.html" $paginator }}
+  </section>
 {{ end }}

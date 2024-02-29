@@ -19,7 +19,7 @@
 {{/*  右侧 ...  */}}
 {{ $rightMore := and (le $currentPage (add $totalPage -3)) (ge $totalPage 6) }}
 
-{{ $liTagClass := "h-8 w-8" }}
+{{ $liTagClass := "h-8 min-w-8 rounded hover:bg-gray-100 m-2" }}
 {{ $aTagClass := "inline-block h-full w-full" }}
 
 <nav class="w-full px-4">
@@ -34,7 +34,7 @@
       </li>
     {{ end }}
     {{/*  首页  */}}
-    <li class="{{ $liTagClass }}">
+    <li class="{{ $liTagClass }} {{ if eq $currentPage 1 }}bg-gray-100{{ end }}">
       <a class="{{ $aTagClass }}" href="{{ $paginator.First.URL }}">1</a>
     </li>
 
@@ -47,7 +47,7 @@
     {{ end }}
     
     {{ if and (gt $currentPage 1) (ne $currentPage $totalPage) }}
-      <li class="{{ $liTagClass }}">{{ $currentPage }}</li>
+      <li class="{{ $liTagClass }} bg-gray-100">{{ $currentPage }}</li>
     {{ end }}
     
     {{ if lt (add $currentPage 1) $totalPage }}
@@ -60,7 +60,7 @@
 
     {{/* 尾页 */}}
     {{ if gt $totalPage 1 }}
-      <li class="{{ $liTagClass }}">
+      <li class="{{ $liTagClass }} {{ if eq $currentPage $totalPage }}bg-gray-100{{ end }}">
         <a class="{{ $aTagClass }}" href="{{ $paginator.Last.URL }}">{{ $totalPage }}</a>
       </li>
     {{ end }}
