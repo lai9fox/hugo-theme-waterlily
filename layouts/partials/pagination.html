@@ -3,72 +3,79 @@
   context: Paginator
 */}}
 
-{{ $paginator := . }}
+{{ $p := . }}
+{{/* TODO: 每页大小，默认5，后续通过配置文件修改  */}}
+{{ $sizePerPage := default 5 site.Params.paginate }}
 {{/*  是否有前一页  */}}
-{{ $hasPrev := $paginator.HasPrev }}
+{{ $hasPrev := $p.HasPrev }}
 {{/*  是否有后一页  */}}
-{{ $hasNext := $paginator.HasNext }}
+{{ $hasNext := $p.HasNext }}
 {{/*  当前页码  */}}
-{{ $currentPage := $paginator.PageNumber }}
+{{ $current := $p.PageNumber }}
 {{/*  分页数量  */}}
-{{ $totalPage := $paginator.TotalPages }}
-{{/*  总元素数量  */}}
-{{ $totalElement := $paginator.TotalNumberOfElements }}
-{{/*  左侧 ...  */}}
-{{ $leftMore := and (ge $currentPage 4) (ge $totalPage 6) }}
-{{/*  右侧 ...  */}}
-{{ $rightMore := and (le $currentPage (add $totalPage -3)) (ge $totalPage 6) }}
+{{ $totalPage := $p.TotalPages }}
+{{/*  总文章数量  */}}
+{{ $totalPosts := $p.TotalNumberOfElements }}
 
 {{ $liTagClass := "h-8 min-w-8 rounded hover:bg-gray-100 m-2" }}
 {{ $aTagClass := "inline-block h-full w-full" }}
 
 <nav class="w-full px-4">
   <ul class="flex-row-center text-xl leading-8 text-center">
-    {{/*  占位符  */}}
     <li class="flex-1" />
 
-    {{/*  上一页  */}}
-    {{ if gt $currentPage 1 }}
+    {{/*  上一页图标  */}}
+    {{ if gt $current 1 }}
       <li class="{{ $liTagClass }}">
-        <a class="{{ $aTagClass }}" href="{{ $paginator.Prev.URL }}">{{partial "icon.html" "left" }}</a>
+        <a class="{{ $aTagClass }}" href="{{ $p.Prev.URL }}">{{partial "icon.html" "left" }}</a>
       </li>
     {{ end }}
-    {{/*  首页  */}}
-    <li class="{{ $liTagClass }} {{ if eq $currentPage 1 }}bg-gray-100{{ end }}">
-      <a class="{{ $aTagClass }}" href="{{ $paginator.First.URL }}">1</a>
+
+    {{/* 首页 */}}
+    <li class="{{ $liTagClass }} {{ if eq $current 1 }}bg-gray-100{{ end }}">
+      <a class="{{ $aTagClass }}" href="{{ $p.First.URL }}">1</a>
     </li>
 
-    {{if $leftMore }}<li class="{{ $liTagClass }}">...</li>{{ end }}
-    
-    {{ if gt (add $currentPage -1) 1 }}
+    {{/*  1 2 3 4 5  */}}
+    {{ if ge $current 4 }}
+      <li class="{{ $liTagClass }}">&hellip;</li>
+    {{ end }}
+
+    {{ if gt (add $current -1) 1 }}
       <li class="{{ $liTagClass }}">
-        <a class="{{ $aTagClass }}" href="{{ $paginator.Prev.URL }}">{{ add $currentPage -1 }}</a>
+        <a class="{{ $aTagClass }}" href="{{ $p.Prev.URL }}">{{ add $current -1 }}</a>
+      </li>
+    {{ end }}
+
+    {{ if and (gt $current 1) (ne $current $totalPage) }}
+      <li class="{{ $liTagClass }} bg-gray-100">{{ $current }}</li>
+    {{ end }}
+
+    {{ if lt (add $current 1) $totalPage }}
+      <li class="{{ $liTagClass }}">
+        <a class="{{ $aTagClass }}" href="{{ $p.Next.URL }}">{{ add $current 1 }}</a>
       </li>
     {{ end }}
     
-    {{ if and (gt $currentPage 1) (ne $currentPage $totalPage) }}
-      <li class="{{ $liTagClass }} bg-gray-100">{{ $currentPage }}</li>
+    {{/*  1 2 3 4 5  */}}
+    {{/* (ge $totalPage 5)  */}}
+    {{/*  x <= total - 3  */}}
+    {{ if le $current (add $totalPage -3) }}
+      <li class="{{ $liTagClass }}">&hellip;</li>
     {{ end }}
-    
-    {{ if lt (add $currentPage 1) $totalPage }}
-      <li class="{{ $liTagClass }}">
-        <a class="{{ $aTagClass }}" href="{{ $paginator.Next.URL }}">{{ add $currentPage 1 }}</a>
-      </li>
-    {{ end }}
-    
-    {{ if $rightMore }}<li class="{{ $liTagClass }}">...</li>{{ end }}
 
     {{/* 尾页 */}}
     {{ if gt $totalPage 1 }}
-      <li class="{{ $liTagClass }} {{ if eq $currentPage $totalPage }}bg-gray-100{{ end }}">
-        <a class="{{ $aTagClass }}" href="{{ $paginator.Last.URL }}">{{ $totalPage }}</a>
+      <li class="{{ $liTagClass }} {{ if eq $current $totalPage }}bg-gray-100{{ end }}">
+        <a class="{{ $aTagClass }}" href="{{ $p.Last.URL }}">{{ $totalPage }}</a>
       </li>
     {{ end }}
-    
-    {{/*  下一页  */}}
-    {{ if lt $currentPage $totalPage }}
+
+
+    {{/* 下一页图标 */}}
+    {{ if lt $current $totalPage }}
       <li class="{{ $liTagClass }}">
-        <a class="{{ $aTagClass }}" href="{{ $paginator.Next.URL }}">{{ partial "icon.html" "right" }}</a>
+        <a class="{{ $aTagClass }}" href="{{ $p.Next.URL }}">{{ partial "icon.html" "right" }}</a>
       </li>
     {{ end }}
   </ul>
