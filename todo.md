@@ -1,4 +1,4 @@
-### front matter 格式定义
+### front matter 格式定义 [x]
 支持:
 - 标题
 - 日期

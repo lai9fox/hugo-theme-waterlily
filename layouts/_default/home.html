@@ -7,7 +7,10 @@
   {{ $paginator := .Paginate $pages }}
   
   <section class="basic-responsive-width flex flex-col justify-between">
-    {{ partial "article.html" $paginator.Pages }}
+    {{/*  {{ partial "article.html" $paginator.Pages }}  */}}
+    {{ range $paginator.Pages }}
+      {{ partial "blog-card.html" . }}
+    {{ end }}
     {{ partial "pagination.html" $paginator }}
   </section>
 {{ end }}

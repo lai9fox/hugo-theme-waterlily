@@ -1,0 +1,63 @@
+{{/*  博客卡片  */}}
+
+{{ $post := . }}
+
+<div class="border flex rounded-xl">
+  {{ with .Params.cover }}
+    <div class="h-64 w-64 rounded-l-xl overflow-hidden">
+      <img class="w-full h-full object-cover transition-transform hover:scale-110" loading="lazy" src="{{ path.Join $post.RelPermalink . }}" alt="封面">
+    </div>
+  {{ end }}
+  
+  <div class="p-4 flex flex-col flex-1">
+    <div class="text-2xl pb-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></div>
+    <div class="text-sm text-gray-400 flex-row-center gap-4 pb-4">
+      <time>{{ .PublishDate.Format "2006-01-02" }}</time>
+      <time>{{ .ReadingTime }} 分钟</time>
+    </div>
+    <div class="flex-1 pb-4">{{- .Summary | plainify | htmlUnescape -}}</div>
+
+    {{ $categories := .GetTerms "categories" }}
+    {{ $tags := .GetTerms "tags" }}
+    {{ if or $categories $tags }}
+      <div class="flex">
+        {{ partial "partials/blog-card__link" (dict "records" $tags "icon" "tag" ) }}
+      </div>
+
+      {{/*  <div class="dropdown dropdown-hover">
+        <div tabindex="0" role="button" class="btn m-1">Click</div>
+        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full">
+          <li><a>Item 1</a></li>
+          <li><a>Item 2</a></li>
+        </ul>
+      </div>  */}}
+    {{ end }}
+  </div>
+</div>
+
+{{/*  
+  context: { records: .GetTerms "categories", icon: 图标名称 }  
+*/}}
+{{ define "partials/blog-card__link" }}
+
+  {{ $records := .records }}
+  {{ $icon := .icon }}
+  {{ $showMore := gt (len $records) 3 }}
+  {{ $remains := add (len $records) -3 }}
+
+  <ul class="-space-x-8 {{ if not $showMore }}hover:-space-x-0{{ else }}dropdown dropdown-hover{{ end }}">
+    {{ range $records }}
+      <li
+        class="py-1 px-2 rounded-md border bg-teal-50 inline-block w-16 text-ellipsis overflow-hidden whitespace-nowrap text-center align-bottom transition-[margin] relative">
+        {{ .LinkTitle }}
+        {{/*  <a class="absolute top-0 bottom-0 left-0 right-0" href="{{ .RelPermalink }}"></a>  */}}
+      </li>
+    {{ end }}
+    {{/*  <div tabindex="0" role="button" class="btn m-1">Click</div>  */}}
+    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-xl max-h-[230px] z-[1] overflow-y-auto">
+      {{ range $records }}
+        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{ end }}
+    </ul>
+  </ul>
+{{ end }}
