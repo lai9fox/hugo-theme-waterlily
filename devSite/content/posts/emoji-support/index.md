@@ -7,7 +7,7 @@ tags = [
   "emoji", "cover", "test", "中文标签", "短", "非常长的标签LAOSDAWEasd", "非常长4的标签LAOSDAWEasd", "非常长的标1签LAOSDAWEasd", "非常长的标2签LAOSDAWEasd", "非常长3的标签LAOSDAWEasd", "非常长3的标签LAOSDAWEasdasd", "非常长3的标签LAOSDAWEasdaa"
 ]
 categories = [
-    "A",
+  "前端", "MARKDOWN", "标记文本语言"
 ]
 # [params]
 cover = "../昙花.jpg"

@@ -20,44 +20,53 @@
     {{ $categories := .GetTerms "categories" }}
     {{ $tags := .GetTerms "tags" }}
     {{ if or $categories $tags }}
-      <div class="flex">
-        {{ partial "partials/blog-card__link" (dict "records" $tags "icon" "tag" ) }}
+      <div class="flex-row-center gap-2">
+        {{ with $tags }}
+          <div class="flex-row-center text-2xl text-gray-400">{{ partial "icon" "tag" }}</div>
+          {{partial "partials/blog-card__link" . }}
+        {{ end }}
+        {{ with $categories }}
+          <div class="flex-row-center text-2xl text-gray-400">{{ partial "icon" "hash" }}</div>
+          {{partial "partials/blog-card__link" . }}
+        {{ end }}
       </div>
-
-      {{/*  <div class="dropdown dropdown-hover">
-        <div tabindex="0" role="button" class="btn m-1">Click</div>
-        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full">
-          <li><a>Item 1</a></li>
-          <li><a>Item 2</a></li>
-        </ul>
-      </div>  */}}
     {{ end }}
   </div>
 </div>
 
 {{/*  
-  context: { records: .GetTerms "categories", icon: 图标名称 }  
+  context: .GetTerms "categories"
 */}}
 {{ define "partials/blog-card__link" }}
 
-  {{ $records := .records }}
-  {{ $icon := .icon }}
-  {{ $showMore := gt (len $records) 3 }}
-  {{ $remains := add (len $records) -3 }}
-
-  <ul class="-space-x-8 {{ if not $showMore }}hover:-space-x-0{{ else }}dropdown dropdown-hover{{ end }}">
-    {{ range $records }}
-      <li
-        class="py-1 px-2 rounded-md border bg-teal-50 inline-block w-16 text-ellipsis overflow-hidden whitespace-nowrap text-center align-bottom transition-[margin] relative">
-        {{ .LinkTitle }}
-        {{/*  <a class="absolute top-0 bottom-0 left-0 right-0" href="{{ .RelPermalink }}"></a>  */}}
-      </li>
-    {{ end }}
-    {{/*  <div tabindex="0" role="button" class="btn m-1">Click</div>  */}}
-    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-xl max-h-[230px] z-[1] overflow-y-auto">
+  {{ $records := . }}
+  {{ $showMore := gt (len $records) 4 }}
+  
+  {{ if $showMore }}
+    {{ $remains := add (len $records) -4 }}
+    <ul class="-space-x-8 dropdown dropdown-bottom dropdown-hover cursor-pointer">
+      {{ range first 4 $records }}
+        <li
+          class="py-1 px-2 rounded-md border bg-teal-50 inline-block w-16 text-ellipsis overflow-hidden whitespace-nowrap text-center align-bottom transition-all relative">
+          {{ .LinkTitle }}
+        </li>
+      {{ end }}
+      <li class="text-center py-1 px-2 rounded-md border w-16 bg-teal-50 inline-block relative">{{ $remains }}+</li>
+      <ul tabindex="0" class="dropdown-content menu p-2 shadow-md bg-base-100 rounded-lg max-h-[230px] z-[1] overflow-y-auto block">
+        {{ range $records }}
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+        {{ end }}
+      </ul>
+    </ul>
+  {{ else }}
+    <ul class="-space-x-8 hover:-space-x-0 term-categories">
       {{ range $records }}
-        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+        <li
+          class="py-1 px-2 rounded-md border bg-teal-50 inline-block w-16 text-ellipsis overflow-hidden whitespace-nowrap text-center align-bottom transition-all relative">
+          {{ .LinkTitle }}
+          <a class="absolute top-0 bottom-0 left-0 right-0" href="{{ .RelPermalink }}"></a>
+        </li>
       {{ end }}
     </ul>
-  </ul>
+  {{ end }}
 {{ end }}

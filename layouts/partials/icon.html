@@ -9,6 +9,6 @@
 {{ $svgName := print "assets/svg/" . ".svg" }}
 {{ $svgContent := readFile $svgName }}
 
-<span class="inline-block relative h-4 w-4">
+<span class="inline-block relative h-[1em] w-[1em]">
   {{ replace $svgContent "<svg" "<svg class=\"fill-current w-full h-full\"" | safeHTML }}
 </span>

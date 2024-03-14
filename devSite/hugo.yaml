@@ -1,6 +1,6 @@
 title: WaterLilyS
 baseURL: https://lai9fox.github.io/blog/
-paginate: 2
+paginate: 5
 hasCJKLanguage: true
 menus:
   main:

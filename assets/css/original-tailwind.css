@@ -2,24 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 响应式宽度 */
-.basic-responsive-width {
-  @apply w-full xl:max-w-6xl
-}
-/* flex 行列居中 */
-.flex-cross-center {
-  @apply flex items-center justify-center
-}
-/* flex 行居中 */
-.flex-row-center {
-  @apply flex items-center
-}
-/* flex 列居中 */
-.flex-col-center {
-  @apply flex justify-center
-}
-
-/* 自定义样式 */
 @font-face {
   font-family: "Jetbrains Mono";
   src: url("/JetBrainsMono-Regular.woff2") format("woff2");
@@ -27,4 +9,29 @@
 
 html {
   font-family: "Jetbrains Mono";
+}
+
+/* 响应式宽度 */
+.basic-responsive-width {
+  @apply w-full xl:max-w-6xl
+}
+
+/* flex 行列居中 */
+.flex-cross-center {
+  @apply flex items-center justify-center
+}
+
+/* flex 行居中 */
+.flex-row-center {
+  @apply flex items-center
+}
+
+/* flex 列居中 */
+.flex-col-center {
+  @apply flex justify-center
+}
+
+/* category 悬停时重置子元素标签的宽度 */
+.term-categories:hover li {
+  width: 8rem;
 }
