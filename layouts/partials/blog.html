@@ -2,25 +2,17 @@
 
 {{ $post := . }}
 
-<div class="border flex rounded-xl">
+<div class="blog__contain">
   {{ with .Params.cover }}
-    <div class="h-64 w-64 rounded-l-xl overflow-hidden">
-      <img
-        class="w-full h-full object-cover transition-transform hover:scale-110"
-        loading="lazy"
-        src="{{ path.Join $post.RelPermalink . }}"
-        alt="封面"
-      />
+    <div class="blog__cover">
+      <img class="blog__cover-img" loading="lazy" src="{{ path.Join $post.RelPermalink . }}" alt="封面" />
     </div>
   {{ end }}
   
-  <div class="p-4 flex flex-col flex-1">
-    <div class="text-2xl pb-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></div>
-    <div class="text-sm text-gray-400 flex-row-center gap-4 pb-4">
-      <time>{{ .PublishDate.Format "2006-01-02" }}</time>
-      <time>{{ .ReadingTime }} 分钟</time>
-    </div>
-    <div class="flex-1 pb-4">{{- .Summary | plainify | htmlUnescape -}}</div>
+  <div class="blog__content">
+    <div class="blog__title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></div>
+    <div class="blog__meta"><time>{{ .PublishDate.Format "2006-01-02" }}</time><time>{{ .ReadingTime }} 分钟</time></div>
+    <div class="blog__summary">{{- .Summary | plainify | htmlUnescape -}}</div>
 
     {{ $categories := .GetTerms "categories" }}
     {{ $tags := .GetTerms "tags" }}

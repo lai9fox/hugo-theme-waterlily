@@ -1,10 +1,20 @@
-<div class="basic-responsive-width flex-row-center justify-between">
-  <h1 class="text-3xl font-semibold"><a href="/">{{ site.Title }}</a></h1>
-  <nav>
-    <ul class="flex gap-4">
+<div class="header__contain">
+  <div class="flex-1">
+    <a class="header__title" href="/">{{ site.Title }}</a>
+  </div>
+  <div class="flex-none">
+    <ul class="header__menu">
+      <li class="header__collasped-menu-li">
+        <a tabindex="0" role="button">{{ partial "icon" "menus" }}</a>
+        <ul tabindex="0" class="header__collasped-menu-li-ul dropdown-content">
+          {{ range site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </li>
       {{ range site.Menus.main }}
-      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        <li class="header__menu-li"><a href="{{ .URL }}">{{ .Name }}</a></li>
       {{ end }}
     </ul>
-  </nav>
+  </div>
 </div>

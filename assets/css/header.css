@@ -1,0 +1,28 @@
+/* header 样式 */
+
+.header__contain {
+  @apply navbar bg-base-100 p-0 h-full common__responsive-width;
+  min-height: unset;
+  margin: auto;
+}
+
+.header__title {
+  @apply btn btn-ghost text-3xl;
+}
+
+.header__menu {
+  @apply menu menu-horizontal p-0;
+}
+
+.header__menu-li {
+  @apply hidden md:block;
+}
+
+.header__collasped-menu-li {
+  @apply dropdown dropdown-bottom dropdown-end text-2xl md:hidden;
+}
+
+.header__collasped-menu-li-ul {
+  @apply z-10 menu p-2 shadow bg-base-100 rounded-box w-52;
+}
+

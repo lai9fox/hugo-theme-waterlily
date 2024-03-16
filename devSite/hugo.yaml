@@ -1,16 +1,16 @@
-title: WaterLilyS
+title: WaterLily 睡莲
 baseURL: https://lai9fox.github.io/blog/
-paginate: 2
+paginate: 5
 hasCJKLanguage: true
 menus:
   main:
-    - name: Categories
+    - name: 分类
       url: /categories/
       weight: 10
-    - name: Tags
+    - name: 标签
       url: /tags/
       weight: 20
-    - name: Archives
+    - name: 归档
       url: /archives/
       weight: 30
 markup:

@@ -1,0 +1,6 @@
+/* home 样式 */
+
+.home__section {
+  @apply common__responsive-width flex flex-col gap-8 pt-8;
+  margin: auto;
+}

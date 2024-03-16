@@ -1,0 +1,27 @@
+/* 页面通用 css 样式 */
+
+@font-face {
+  font-family: "Jetbrains Mono";
+  src: url("/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+html {
+  font-family: "Jetbrains Mono";
+}
+
+.common__responsive-width {
+  width: 90%;
+  @apply xl:max-w-7xl;
+}
+
+.common__flex-row-center {
+  @apply flex items-center;
+}
+
+.common__flex-col-center {
+  @apply flex justify-center;
+}
+
+.common_flex-cross-center {
+  @apply flex items-center justify-center
+}

@@ -1,15 +1,14 @@
 {{/*  首页  */}}
 
 {{ define "main" }}
-  {{/*  TODO: 将 posts 改为动态配置，默认值为 "posts"  */}}
   {{ $pages := where site.RegularPages "Type" "posts" }}
 
   {{/*  TODO: 可配置的分页大小  */}}
   {{ $paginator := .Paginate $pages }}
   
-  <section class="basic-responsive-width flex flex-col justify-between gap-8 pt-8">
+  <section class="home__section">
     {{ range $paginator.Pages }}
-      {{ partial "blog-card.html" . }}
+      {{ partial "blog.html" . }}
     {{ end }}
     {{ partial "pagination.html" $paginator }}
   </section>

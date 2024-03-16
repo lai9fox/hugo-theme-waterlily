@@ -1,0 +1,31 @@
+/* blog 卡片样式 */
+
+.blog__contain {
+  /* @apply flex rounded-xl shadow md:max-h-64; */
+  @apply flex rounded-xl shadow;
+}
+
+.blog__cover {
+  @apply md:rounded-l-xl overflow-hidden shrink-0 h-64 w-64;
+}
+
+.blog__cover-img {
+  @apply w-full h-full object-cover transition-transform duration-300 hover:scale-110;
+}
+
+.blog__content {
+  /* @apply p-4 flex flex-col flex-1 gap-4; */
+  @apply p-4 max-h-full;
+}
+
+.blog__title {
+  @apply text-2xl;
+}
+
+.blog__meta {
+  @apply text-sm text-gray-400 flex-row-center gap-4;
+}
+
+.blog__summary {
+  @apply flex-1;
+}

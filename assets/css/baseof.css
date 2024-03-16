@@ -1,0 +1,21 @@
+/* baseof 布局样式 */
+
+.baseof__html {
+  @apply scroll-smooth scroll-pt-16;
+}
+
+.baseof__body {
+  @apply w-full flex flex-col h-dvh;
+}
+
+.baseof__header {
+  @apply h-16 border-b bg-white fixed top-0 left-0 right-0 z-10;
+}
+
+.baseof__main {
+  @apply w-full mb-8 mt-16 flex-1;
+}
+
+.baseof__footer {
+  @apply h-16 border-t bottom-0 left-0 right-0 shrink-0 common_flex-cross-center;
+}
