@@ -1,6 +1,6 @@
 title: WaterLilyS
 baseURL: https://lai9fox.github.io/blog/
-paginate: 5
+paginate: 2
 hasCJKLanguage: true
 menus:
   main:
@@ -14,22 +14,9 @@ menus:
       url: /archives/
       weight: 30
 markup:
-  highlight:
-    anchorLineNos: false
-    codeFences: true
-    guessSyntax: false
-    hl_Lines: ""
-    hl_inline: false
-    lineAnchors: ""
-    lineNoStart: 1
-    lineNos: false
-    lineNumbersInTable: true
-    noClasses: true
-    noHl: false
-    style: monokai
-    tabWidth: 4
-markup:
   tableOfContents:
     endLevel: 5
     ordered: false
     startLevel: 2
+params:
+  terms_link_num: 4

@@ -5,7 +5,12 @@
 <div class="border flex rounded-xl">
   {{ with .Params.cover }}
     <div class="h-64 w-64 rounded-l-xl overflow-hidden">
-      <img class="w-full h-full object-cover transition-transform hover:scale-110" loading="lazy" src="{{ path.Join $post.RelPermalink . }}" alt="封面">
+      <img
+        class="w-full h-full object-cover transition-transform hover:scale-110"
+        loading="lazy"
+        src="{{ path.Join $post.RelPermalink . }}"
+        alt="封面"
+      />
     </div>
   {{ end }}
   
@@ -40,16 +45,14 @@
 {{ define "partials/blog-card__link" }}
 
   {{ $records := . }}
-  {{ $showMore := gt (len $records) 4 }}
+  {{ $limit := default 4 site.Params.terms_link_num }}
+  {{ $showMore := gt (len $records) $limit }}
   
   {{ if $showMore }}
-    {{ $remains := add (len $records) -4 }}
+    {{ $remains := sub (len $records) $limit }}
     <ul class="-space-x-8 dropdown dropdown-bottom dropdown-hover cursor-pointer">
-      {{ range first 4 $records }}
-        <li
-          class="py-1 px-2 rounded-md border bg-teal-50 inline-block w-16 text-ellipsis overflow-hidden whitespace-nowrap text-center align-bottom transition-all relative">
-          {{ .LinkTitle }}
-        </li>
+      {{ range first $limit $records }}
+        <li class="blog-card-link-li">{{ .LinkTitle }}</li>
       {{ end }}
       <li class="text-center py-1 px-2 rounded-md border w-16 bg-teal-50 inline-block relative">{{ $remains }}+</li>
       <ul tabindex="0" class="dropdown-content menu p-2 shadow-md bg-base-100 rounded-lg max-h-[230px] z-[1] overflow-y-auto block">
@@ -61,8 +64,7 @@
   {{ else }}
     <ul class="-space-x-8 hover:-space-x-0 term-categories">
       {{ range $records }}
-        <li
-          class="py-1 px-2 rounded-md border bg-teal-50 inline-block w-16 text-ellipsis overflow-hidden whitespace-nowrap text-center align-bottom transition-all relative">
+        <li class="blog-card-link-li">
           {{ .LinkTitle }}
           <a class="absolute top-0 bottom-0 left-0 right-0" href="{{ .RelPermalink }}"></a>
         </li>

@@ -31,7 +31,14 @@ html {
   @apply flex justify-center
 }
 
-/* category 悬停时重置子元素标签的宽度 */
+.term-categories li {
+  transition: margin cubic-bezier(0.165, 0.84, 0.44, 1) 150ms, width cubic-bezier(0.165, 0.84, 0.44, 1) 150ms 50ms;
+}
+
 .term-categories:hover li {
-  width: 8rem;
+  width: unset;
+}
+
+.blog-card-link-li {
+  @apply py-1 px-2 rounded-md border bg-teal-50 inline-block w-16 text-ellipsis overflow-hidden whitespace-nowrap text-center align-bottom relative
 }
