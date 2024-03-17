@@ -6,6 +6,9 @@
 @import "./header.css";
 @import "./home.css";
 @import "./blog.css";
+@import "./blog-terms.css";
+@import "./pagination.css";
+@import "./footer.css";
 
 /* 响应式宽度 */
 .basic-responsive-width {

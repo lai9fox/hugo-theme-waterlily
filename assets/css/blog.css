@@ -1,21 +1,23 @@
 /* blog 卡片样式 */
 
 .blog__contain {
-  /* @apply flex rounded-xl shadow md:max-h-64; */
-  @apply flex rounded-xl shadow;
+  @apply flex flex-col md:flex-row rounded-xl shadow;
 }
 
 .blog__cover {
-  @apply md:rounded-l-xl overflow-hidden shrink-0 h-64 w-64;
+  @apply shrink-0 w-full md:w-72 h-72 p-4;
+}
+
+.blog__cover-contain {
+  @apply rounded-xl overflow-hidden h-full w-full;
 }
 
 .blog__cover-img {
-  @apply w-full h-full object-cover transition-transform duration-300 hover:scale-110;
+  @apply h-full w-full object-cover transition-transform duration-300 hover:scale-110;
 }
 
 .blog__content {
-  /* @apply p-4 flex flex-col flex-1 gap-4; */
-  @apply p-4 max-h-full;
+  @apply p-4 max-h-full flex flex-col gap-4;
 }
 
 .blog__title {
@@ -28,4 +30,8 @@
 
 .blog__summary {
   @apply flex-1;
+}
+
+.blog__terms {
+  @apply flex flex-col md:flex-row gap-4;
 }

@@ -17,65 +17,64 @@
 {{/*  总文章数量  */}}
 {{ $totalPosts := $p.TotalNumberOfElements }}
 
-{{ $liTagClass := "h-8 min-w-8 rounded hover:bg-gray-100 m-2" }}
-{{ $aTagClass := "inline-block h-full w-full" }}
-
-<nav class="w-full px-4">
-  <ul class="flex-row-center text-xl leading-8 text-center">
-    <li class="flex-1" />
-
+<nav class="pagination">
+  <span class="pagination__span"></span>
+  <ul class="pagination__ul">
     {{/*  上一页图标  */}}
     {{ if gt $current 1 }}
-      <li class="{{ $liTagClass }}">
-        <a class="{{ $aTagClass }}" href="{{ $p.Prev.URL }}">{{partial "icon.html" "left" }}</a>
+      <li class="pagination__li">
+        <a class="pagination__a" href="{{ $p.Prev.URL }}">{{partial "icon.html" "left" }}</a>
       </li>
     {{ end }}
 
-    {{/* 首页 */}}
-    <li class="{{ $liTagClass }} {{ if eq $current 1 }}bg-gray-100{{ end }}">
-      <a class="{{ $aTagClass }}" href="{{ $p.First.URL }}">1</a>
+    {{/*  首页  */}}
+    <li class="pagination__li {{ if eq $current 1 }}pagination__li--active{{ end }}">
+      <a class="pagination__a" href="{{ $p.First.URL }}">1</a>
     </li>
 
-    {{/*  1 2 3 4 5  */}}
-    {{ if ge $current 4 }}
-      <li class="{{ $liTagClass }}">&hellip;</li>
+    {{/*  省略号  */}}
+    {{ if ge $current 3 }}
+      <li class="pagination__li">&hellip;</li>
     {{ end }}
 
+    {{/*  当前页 -1  */}}
     {{ if gt (add $current -1) 1 }}
-      <li class="{{ $liTagClass }}">
-        <a class="{{ $aTagClass }}" href="{{ $p.Prev.URL }}">{{ add $current -1 }}</a>
+      <li class="pagination__li pagination__li--not-mobile">
+        <a class="pagination__a" href="{{ $p.Prev.URL }}">{{ add $current -1 }}</a>
       </li>
     {{ end }}
 
+    {{/*  当前页  */}}
     {{ if and (gt $current 1) (ne $current $totalPage) }}
-      <li class="{{ $liTagClass }} bg-gray-100">{{ $current }}</li>
+      <li class="pagination__li pagination__li--active">
+        <a class="pagination__a">{{ $current }}</a>
+      </li>
     {{ end }}
 
+    {{/*  当前页 +1  */}}
     {{ if lt (add $current 1) $totalPage }}
-      <li class="{{ $liTagClass }}">
-        <a class="{{ $aTagClass }}" href="{{ $p.Next.URL }}">{{ add $current 1 }}</a>
+      <li class="pagination__li pagination__li--not-mobile">
+        <a class="pagination__a" href="{{ $p.Next.URL }}">{{ add $current 1 }}</a>
       </li>
     {{ end }}
     
-    {{/*  1 2 3 4 5  */}}
-    {{/* (ge $totalPage 5)  */}}
-    {{/*  x <= total - 3  */}}
-    {{ if le $current (add $totalPage -3) }}
-      <li class="{{ $liTagClass }}">&hellip;</li>
+    {{/*  省略号  */}}
+    {{ if le $current (sub $totalPage 2) }}
+      <li class="pagination__li">&hellip;</li>
     {{ end }}
 
-    {{/* 尾页 */}}
+    {{/*  尾页  */}}
     {{ if gt $totalPage 1 }}
-      <li class="{{ $liTagClass }} {{ if eq $current $totalPage }}bg-gray-100{{ end }}">
-        <a class="{{ $aTagClass }}" href="{{ $p.Last.URL }}">{{ $totalPage }}</a>
+      <li class="pagination__li {{ if eq $current $totalPage }}pagination__li--active{{ end }}">
+        <a class="pagination__a" href="{{ $p.Last.URL }}">{{ $totalPage }}</a>
       </li>
     {{ end }}
 
 
-    {{/* 下一页图标 */}}
+    {{/*  下一页图标  */}}
     {{ if lt $current $totalPage }}
-      <li class="{{ $liTagClass }}">
-        <a class="{{ $aTagClass }}" href="{{ $p.Next.URL }}">{{ partial "icon.html" "right" }}</a>
+      <li class="pagination__li">
+        <a class="pagination__a" href="{{ $p.Next.URL }}">{{ partial "icon.html" "right" }}</a>
       </li>
     {{ end }}
   </ul>

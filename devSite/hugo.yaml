@@ -1,6 +1,6 @@
 title: WaterLily 睡莲
 baseURL: https://lai9fox.github.io/blog/
-paginate: 5
+paginate: 10
 hasCJKLanguage: true
 menus:
   main:
@@ -18,5 +18,5 @@ markup:
     endLevel: 5
     ordered: false
     startLevel: 2
-params:
-  terms_link_num: 4
+# params:
+  # terms_link_num: 3

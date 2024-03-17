@@ -1,12 +1,18 @@
 +++
 author = "Hugo Authors"
-title = "Math Typesetting"
+title = "Math Typesetting 123"
 date = "2019-03-08"
 description = "A brief guide to setup KaTeX"
 math = true
 categories = [
   "math",
   "latex",
+  "latex1",
+  "latex12",
+  "latex13",
+  "late2",
+  "late33",
+  "latex412312312asdasdasasd asd",
 ]
 +++
 

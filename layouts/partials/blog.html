@@ -1,11 +1,14 @@
 {{/*  博客卡片  */}}
+{{/*  BUG: 卡片宽度变化时，分类、标签堆叠换行样式修正  */}}
 
 {{ $post := . }}
 
 <div class="blog__contain">
   {{ with .Params.cover }}
     <div class="blog__cover">
-      <img class="blog__cover-img" loading="lazy" src="{{ path.Join $post.RelPermalink . }}" alt="封面" />
+      <div class="blog__cover-contain">
+        <img class="blog__cover-img" loading="lazy" src="{{ path.Join $post.RelPermalink . }}" alt="封面" />
+      </div>
     </div>
   {{ end }}
   
@@ -17,14 +20,18 @@
     {{ $categories := .GetTerms "categories" }}
     {{ $tags := .GetTerms "tags" }}
     {{ if or $categories $tags }}
-      <div class="flex-row-center gap-2">
-        {{ with $tags }}
-          <div class="flex-row-center text-2xl text-gray-400">{{ partial "icon" "tag" }}</div>
-          {{partial "partials/blog-card__link" . }}
-        {{ end }}
+      <div class="blog__terms">
         {{ with $categories }}
-          <div class="flex-row-center text-2xl text-gray-400">{{ partial "icon" "hash" }}</div>
-          {{partial "partials/blog-card__link" . }}
+          <div class="blog__terms-contain">
+            <div class="blog-terms__icon">{{ partial "icon" "hash" }}</div>
+            {{partial "partials/blog-terms" . }}
+          </div>
+        {{ end }}
+        {{ with $tags }}
+          <div class="blog__terms-contain">
+            <div class="blog-terms__icon">{{ partial "icon" "tag" }}</div>
+            {{partial "partials/blog-terms" . }}
+          </div>
         {{ end }}
       </div>
     {{ end }}
@@ -34,31 +41,31 @@
 {{/*  
   context: .GetTerms "categories"
 */}}
-{{ define "partials/blog-card__link" }}
+{{ define "partials/blog-terms" }}
 
   {{ $records := . }}
-  {{ $limit := default 4 site.Params.terms_link_num }}
+  {{ $limit := default 3 site.Params.terms_link_num }}
   {{ $showMore := gt (len $records) $limit }}
   
   {{ if $showMore }}
     {{ $remains := sub (len $records) $limit }}
-    <ul class="-space-x-8 dropdown dropdown-bottom dropdown-hover cursor-pointer">
+    <ul role="button" class="blog-terms__dropdown dropdown dropdown-bottom dropdown-hover">
       {{ range first $limit $records }}
-        <li class="blog-card-link-li">{{ .LinkTitle }}</li>
+        <li class="blog-terms__li">{{- .LinkTitle -}}</li>
       {{ end }}
-      <li class="text-center py-1 px-2 rounded-md border w-16 bg-teal-50 inline-block relative">{{ $remains }}+</li>
-      <ul tabindex="0" class="dropdown-content menu p-2 shadow-md bg-base-100 rounded-lg max-h-[230px] z-[1] overflow-y-auto block">
+      <li class="blog-terms__li--more">{{ $remains }}+</li>
+      <ul tabindex="0" class="blog-terms__dropdown-menus">
         {{ range $records }}
-          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+          <li><a href="{{ .RelPermalink }}">{{- .LinkTitle -}}</a></li>
         {{ end }}
       </ul>
     </ul>
   {{ else }}
-    <ul class="-space-x-8 hover:-space-x-0 term-categories">
+    <ul class="blog-terms__ul blog-terms__ul--expandable">
       {{ range $records }}
-        <li class="blog-card-link-li">
-          {{ .LinkTitle }}
-          <a class="absolute top-0 bottom-0 left-0 right-0" href="{{ .RelPermalink }}"></a>
+        <li class="blog-terms__li">
+          {{- .LinkTitle -}}
+          <a class="blog-terms__a" href="{{ .RelPermalink }}"></a>
         </li>
       {{ end }}
     </ul>

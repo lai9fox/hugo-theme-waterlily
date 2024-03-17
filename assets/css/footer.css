@@ -1,0 +1,5 @@
+/* footer 样式 */
+
+.footer {
+  @apply common__responsive-width;
+}

@@ -1,0 +1,50 @@
+/* blog-terms 样式，内联 partials */
+
+.blog__terms-contain {
+  @apply flex-row-center gap-2;
+}
+
+.blog-terms__icon {
+  @apply text-2xl text-gray-400;
+}
+
+.blog-terms__dropdown {
+  @apply -space-x-8 cursor-pointer;
+}
+
+.blog-terms__dropdown-menus {
+  @apply dropdown-content menu p-2 shadow bg-base-100 rounded-xl max-h-44 max-w-[26rem] overflow-y-auto block z-10;
+}
+
+.blog-terms__dropdown-menus li {
+  @apply break-words;
+}
+
+.blog-terms__ul {
+  @apply -space-x-8;
+}
+
+.blog-terms__ul--expandable {
+  @apply hover:space-x-1;
+}
+
+.blog-terms__ul:hover li {
+  @apply w-[7.5rem];
+}
+
+.blog-terms__a {
+  @apply absolute top-0 bottom-0 left-0 right-0;
+}
+
+.blog-terms__li--conmmon {
+  @apply py-1 px-3 my-1 rounded-md w-16 bg-slate-50 inline-block relative text-center shadow align-bottom;
+}
+
+.blog-terms__li {
+  @apply blog-terms__li--conmmon truncate;
+  transition: margin cubic-bezier(0.4, 0, 0.2, 1) 300ms, width cubic-bezier(0.4, 0, 0.2, 1) 300ms;
+}
+
+.blog-terms__li--more {
+  @apply blog-terms__li--conmmon;
+}
