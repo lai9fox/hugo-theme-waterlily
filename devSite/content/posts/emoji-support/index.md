@@ -4,10 +4,10 @@ title = "Emoji Support"
 date = "2019-04-05"
 description = "Guide to emoji usage in Hugo"
 tags = [
-  "A非常长3的标签LAOSDAWEasdasd", "emoji", "cover", "test", "中文标签", "短", "非常长的标签LAOSDAWEasd", "非常长4的标签LAOSDAWEasd", "非常长的标1签LAOSDAWEasd", "非常长的标2签LAOSDAWEasd", "非常长3的标签LAOSDAWEasd", "", "非常长3的标签LAOSDAWEasdaa"
+  "非常长3的标签非常长3的标签非常长3的标签非常长3的标签非常长3的标签非常长3的标签", "emoji", "cover", "test", "中文标签", "短", "非常长的标签LAOSDAWEasd", "非常长4的标签LAOSDAWEasd", "非常长的标1签LAOSDAWEasd", "非常长的标2签LAOSDAWEasd", "非常长3的标签LAOSDAWEasd", "", "非常长3的标签LAOSDAWEasdaa"
 ]
 categories = [
-  "A非常长3的标签LAOSDAWEasdasd", "前端页面进阶", "MARKDOWN"
+  "非常长3的标签非常长3的标签非常长3的标签非常长3的标签非常长3的标签非常长3的标签", "前端页面进阶", "MARKDOWN"
 ]
 # [params]
 cover = "../昙花.jpg"

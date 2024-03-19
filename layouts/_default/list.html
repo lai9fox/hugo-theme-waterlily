@@ -5,18 +5,22 @@
   {{/*  是否术语页面  */}}
   {{ $isTerm := eq .Kind "term" }}
 
-  <section class="basic-responsive-width py-8">
+  <section class="list">
     {{ if $isTerm }}
+      {{/*  术语页面  */}}
       {{ $paginator := (.Paginate .Pages 5) }}
       <h3 class="text-2xl">
         <a href="{{ .Parent.RelPermalink }}">{{ .Parent.Name }}</a>
         <sup>{{ printf "%s" ">>" }}</sup>
         <a href="{{ .RelPermalink }}">{{ .Name }}</a>
       </h3>
-      {{ partial "article.html" $paginator.Pages }}
+      {{/*  {{ partial "article.html" $paginator.Pages }}  */}}
+      {{ range $paginator.Pages }}
+        {{ partial "blog.html" . }}
+      {{ end }}
       {{ partial "pagination.html" $paginator }}
     {{ else if $isTaxonomy }}
-
+      {{/*  分类页面  */}}
       {{/* 复数分类名称 */}}
       {{ $taxonomyName := .Data.Plural }}
       {{/* { term: weightedPages } */}}
@@ -26,9 +30,8 @@
       {{/* 是否是标签页面 */}}
       {{ $isTags := eq (lower $taxonomyName) "tags" }}
 
-      <h3 class="text-2xl">{{ .Title }}</h3>
       {{ if $isCategories }}
-        {{ partial "taxonomy_categories.html" $taxonomyObject }}
+        {{ partial "taxonomy_categories.html" (dict "taxonomy" $taxonomyObject "title" .Title) }}
       {{ else if $isTags }}
         {{ partial "taxonomy_tags.html" $taxonomyObject }}
       {{ end }}
@@ -42,17 +45,26 @@
   context: .Data.Terms
 */}}
 {{ define "partials/taxonomy_categories.html" }}
-  {{ $taxonomyObj := . }}
-  <ul class="w-full flex flex-col py-4 gap-4">
-    {{ range $taxonomyName, $weightedPages := $taxonomyObj }}
-      <li class="h-16 flex-row-center border-b px-4">
-        <h3 class="text-xl flex-1">
-          {{ partial "icon.html" "hash" }}
-          <a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
-        </h3>
-        <span class="text-2xl font-bold italic">{{ .Count }}</span>
-      </li>
-    {{ end }}
+  {{ $taxonomyObj := .taxonomy }}
+  {{ $title := .title }}
+  <ul class="list__taxonomy-category">
+    <li>
+      <span class="list__taxonomy-title">
+        <span class="list__taxonomy-icon">{{ partial "icon" "folder" }}</span>
+        {{ $title }}
+      </span>
+      <ul>
+        {{ range $taxonomyName, $weightedPages := $taxonomyObj }}
+          <li class="list__taxonomy-category-li">
+            <a class="list__taxonomy-category-a" href="{{ .Page.RelPermalink }}">
+              {{- partial "icon" "paper" -}}
+              {{- .Page.LinkTitle -}}
+              <span class="list__taxonomy-category-num">{{ .Count }}</span>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </li>
   </ul>
 {{ end }}
 

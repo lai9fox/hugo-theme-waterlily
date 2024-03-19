@@ -9,6 +9,7 @@
 @import "./blog-terms.css";
 @import "./pagination.css";
 @import "./footer.css";
+@import "./list.css";
 
 /* 响应式宽度 */
 .basic-responsive-width {

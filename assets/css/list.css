@@ -1,0 +1,31 @@
+/* list 样式 */
+
+.list {
+  @apply common__responsive-width pt-4 m-auto;
+}
+
+.list__taxonomy-title {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.list__taxonomy-icon {
+  @apply mr-2;
+}
+
+.list__taxonomy-category {
+  @apply menu menu-lg bg-base-200 rounded-lg;
+  background-color: unset;
+}
+
+.list__taxonomy-category-num {
+  @apply text-2xl;
+}
+
+.list__taxonomy-category-li {
+  @apply my-1;
+}
+
+.list__taxonomy-category-a span {
+  @apply top-0;
+}
