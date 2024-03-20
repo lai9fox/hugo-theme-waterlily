@@ -9,16 +9,31 @@
     {{ if $isTerm }}
       {{/*  术语页面  */}}
       {{ $paginator := (.Paginate .Pages 5) }}
-      <h3 class="text-2xl">
-        <a href="{{ .Parent.RelPermalink }}">{{ .Parent.Name }}</a>
-        <sup>{{ printf "%s" ">>" }}</sup>
-        <a href="{{ .RelPermalink }}">{{ .Name }}</a>
-      </h3>
-      {{/*  {{ partial "article.html" $paginator.Pages }}  */}}
-      {{ range $paginator.Pages }}
-        {{ partial "blog.html" . }}
-      {{ end }}
-      {{ partial "pagination.html" $paginator }}
+
+      <div class="list__terms-title">
+        <ul>
+          <li>
+            <a href="{{ .Parent.RelPermalink }}">
+              <span class="list__terms-parent-icon">{{ partial "icon.html" "folder" }}</span>
+              {{- .Parent.Name -}}
+            </a>
+          </li>
+          <li>
+            <a>
+              <span class="list__terms-current-icon">{{ partial "icon.html" "paper" }}</span>
+              {{- .Name -}}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="list__terms-blog">
+        {{ range $paginator.Pages }}
+          {{ partial "blog.html" . }}
+        {{ end }}
+        {{ partial "pagination.html" $paginator }}
+      </div>
+
     {{ else if $isTaxonomy }}
       {{/*  分类页面  */}}
       {{/* 复数分类名称 */}}

@@ -29,3 +29,27 @@
 .list__taxonomy-category-a span {
   @apply top-0;
 }
+
+.list__terms-title {
+  @apply text-2xl breadcrumbs;
+}
+
+.list__terms-title>ul>li+*:before,
+.list__terms-title>ol>li+*:before {
+  height: 0.5625rem;
+  width: 0.5625rem;
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
+
+.list__terms-parent-icon {
+  @apply mr-4;
+}
+
+.list__terms-current-icon {
+  @apply mr-2;
+}
+
+.list__terms-blog {
+  @apply pt-4 flex flex-col gap-8;
+}
