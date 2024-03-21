@@ -23,11 +23,31 @@
 }
 
 .list__taxonomy-category-li {
-  @apply my-1;
+  @apply my-4 rounded-lg shadow hover:shadow-md;
 }
 
 .list__taxonomy-category-a span {
   @apply top-0;
+}
+
+.list__taxonomy-tag-contain {
+  @apply px-8;
+}
+
+.list__taxonomy-tag-btn {
+  @apply btn btn-ghost relative inline-block m-2 py-3 shadow hover:shadow-md;
+  line-height: 1.75rem;
+  font-size: 1.125rem;
+  height: unset;
+  min-height: unset;
+}
+
+.list__taxonomy-tag-link {
+  @apply absolute top-0 bottom-0 left-0 right-0;
+}
+
+.list__taxonomy-tag-icon {
+  @apply text-gray-400;
 }
 
 .list__terms-title {

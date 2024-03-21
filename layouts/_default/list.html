@@ -4,6 +4,12 @@
   {{ $isTaxonomy := eq .Kind "taxonomy" }}
   {{/*  是否术语页面  */}}
   {{ $isTerm := eq .Kind "term" }}
+  {{/* 复数分类名称 */}}
+  {{ $taxonomyName := .Data.Plural }}
+  {{/* 是否是分类页面 */}}
+  {{ $isCategories := eq (lower $taxonomyName) "categories" }}
+  {{/* 是否是标签页面 */}}
+  {{ $isTags := eq (lower $taxonomyName) "tags" }}
 
   <section class="list">
     {{ if $isTerm }}
@@ -14,13 +20,25 @@
         <ul>
           <li>
             <a href="{{ .Parent.RelPermalink }}">
-              <span class="list__terms-parent-icon">{{ partial "icon.html" "folder" }}</span>
+              <span class="list__terms-parent-icon">
+                {{ if $isCategories }}
+                  {{ partial "icon.html" "folder" }}
+                {{ else if $isTags }}
+                  {{ partial "icon.html" "tags" }}
+                {{ end }}
+              </span>
               {{- .Parent.Name -}}
             </a>
           </li>
           <li>
             <a>
-              <span class="list__terms-current-icon">{{ partial "icon.html" "paper" }}</span>
+              <span class="list__terms-current-icon">
+                {{ if $isCategories }}
+                  {{ partial "icon.html" "paper" }}
+                {{ else if $isTags }}
+                  {{ partial "icon.html" "tag" }}
+                {{ end }}
+              </span>
               {{- .Name -}}
             </a>
           </li>
@@ -36,19 +54,13 @@
 
     {{ else if $isTaxonomy }}
       {{/*  分类页面  */}}
-      {{/* 复数分类名称 */}}
-      {{ $taxonomyName := .Data.Plural }}
       {{/* { term: weightedPages } */}}
       {{ $taxonomyObject := .Data.Terms }}
-      {{/* 是否是分类页面 */}}
-      {{ $isCategories := eq (lower $taxonomyName) "categories" }}
-      {{/* 是否是标签页面 */}}
-      {{ $isTags := eq (lower $taxonomyName) "tags" }}
 
       {{ if $isCategories }}
         {{ partial "taxonomy_categories.html" (dict "taxonomy" $taxonomyObject "title" .Title) }}
       {{ else if $isTags }}
-        {{ partial "taxonomy_tags.html" $taxonomyObject }}
+        {{ partial "taxonomy_tags.html" (dict "taxonomy" $taxonomyObject "title" .Title) }}
       {{ end }}
 
     {{ end }}
@@ -88,16 +100,24 @@
   context: .Data.Terms
 */}}
 {{ define "partials/taxonomy_tags.html" }}
-  {{ $taxonomyObj := . }}
-  <ul class="py-4 w-full flex gap-4 flex-wrap">
-    {{ range $taxonomyObj }}
-      <li class="h-16 flex-row-center px-4 hover:bg-gray-100 transition-colors rounded-xl">
-        <h3 class="text-xl flex-1">
-          {{ partial "icon.html" "tag" }}
-          <a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
-        </h3>
-        <sup class="font-bold text-base italic">{{ .Count }}</sup>
-      </li>
-    {{ end }}
+  {{ $taxonomyObj := .taxonomy }}
+  {{ $title := .title }}
+  <ul class="list__taxonomy-category">
+    <li>
+      <span class="list__taxonomy-title">
+        <span class="list__taxonomy-icon">{{ partial "icon.html" "tags" }}</span>
+        {{ $title }}
+      </span>
+    </li>
   </ul>
+  <div class="list__taxonomy-tag-contain">
+    {{ range $taxonomyObj }}
+      <button class="list__taxonomy-tag-btn">
+        <span class="list__taxonomy-tag-icon">{{ partial "icon.html" "tag" }}</span>
+        <span>{{ .Page.LinkTitle }}</span>
+        <sup class="font-bold text-base italic">&nbsp;{{ .Count }}</sup>
+        <a class="list__taxonomy-tag-link" href="{{ .Page.RelPermalink }}"></a>
+      </button>
+    {{ end }}
+  </div>
 {{ end }}

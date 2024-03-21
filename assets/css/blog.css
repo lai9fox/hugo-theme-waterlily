@@ -1,7 +1,7 @@
 /* blog 卡片样式 */
 
 .blog__contain {
-  @apply flex flex-col md:flex-row rounded-xl shadow;
+  @apply flex flex-col md:flex-row rounded-xl shadow-sm hover:shadow;
 }
 
 .blog__cover {
