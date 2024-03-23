@@ -10,6 +10,7 @@
 @import "./pagination.css";
 @import "./footer.css";
 @import "./list.css";
+@import "./archive.css";
 
 /* 响应式宽度 */
 .basic-responsive-width {

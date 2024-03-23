@@ -1,0 +1,46 @@
+.archive__section {
+  @apply common__responsive-width m-auto pt-4;
+}
+
+.archive__header {
+  @apply menu menu-lg bg-base-200 rounded-lg bg-transparent;
+}
+
+.archive__title {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.archive__icon {
+  @apply mr-2;
+}
+
+.archive__year {
+  @apply timeline-middle timeline-box;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.archive__month--left {
+  @apply timeline-start timeline-box;
+}
+
+.archive__month--right {
+  @apply timeline-end timeline-box;
+}
+
+.archive__page--left {
+  @apply timeline-start timeline-box border-none shadow hover:shadow-md transition-shadow;
+}
+
+.archive__page--right {
+  @apply timeline-end timeline-box border-none shadow hover:shadow-md transition-shadow;
+}
+
+.archive__page-title {
+  @apply text-base mb-2;
+}
+
+.archive__page-meta {
+  @apply text-gray-400 text-sm;
+}

@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "Emoji Support"
+title = "非常长3的标签非常长3的标签非常长3的标签非常长3的标签非常长3的标签非常长3的标签"
 date = "2019-04-05"
 description = "Guide to emoji usage in Hugo"
 tags = [
