@@ -3499,14 +3499,41 @@ html {
 
 /* footer 样式 */
 
-.footer {
+.footer__contain {
   width: 90%;
 }
 
 @media (min-width: 1280px) {
-  .footer {
+  .footer__contain {
     max-width: 80rem;
   }
+}
+
+.footer__content {
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.footer__socials {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.footer__social-link {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.footer__copyright {
+  flex: 1 1 0%;
+}
+
+.footer__copyright-link {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
 /* list 样式 */

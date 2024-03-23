@@ -1,5 +1,25 @@
 /* footer 样式 */
 
-.footer {
+.footer__contain {
   @apply common__responsive-width;
+}
+
+.footer__content {
+  @apply flex-row-center gap-4;
+}
+
+.footer__socials {
+  @apply flex-row-center gap-x-2;
+}
+
+.footer__social-link {
+  @apply text-xl;
+}
+
+.footer__copyright {
+  @apply flex-1;
+}
+
+.footer__copyright-link {
+  @apply text-blue-500;
 }

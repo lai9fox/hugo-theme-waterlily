@@ -1,3 +1,13 @@
-<div class="footer">
-  <p>Copyright {{ now.Year }}. All rights reserved.</p>
+<div class="footer__contain">
+  <div class="footer__content">
+    <div class="footer__socials">
+      {{ range $k, $v := site.Params.socials }}
+        <a href="{{ $v }}" target="_blank" class="footer__social-link">
+          {{ partial "icon.html" $k }}
+        </a>
+      {{ end }}
+    </div>
+    <div class="footer__copyright">Power by<a href="https://gohugo.io/" target="_blank" class="footer__copyright-link"> Hugo </a>&amp;<a href="https://github.com/lai9fox/hugo-theme-waterlily" target="_blank" class="footer__copyright-link"> WaterLily </a>
+    </div>
+  </div>
 </div>

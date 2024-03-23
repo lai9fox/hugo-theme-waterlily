@@ -18,5 +18,9 @@ markup:
     endLevel: 5
     ordered: false
     startLevel: 2
+params:
+  socials:
+    github: 'https://github.com/lai9fox/hugo-theme-waterlily'
+    mail: 'mailto:1591765125@qq.com'
 # params:
   # terms_link_num: 3
