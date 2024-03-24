@@ -11,6 +11,7 @@
 @import "./footer.css";
 @import "./list.css";
 @import "./archive.css";
+@import "./single.css";
 
 /* 响应式宽度 */
 .basic-responsive-width {

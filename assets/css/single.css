@@ -1,0 +1,47 @@
+.single__contain {
+  @apply common__responsive-width relative m-auto;
+}
+
+.single__article {
+  @apply lg:mr-[350px];
+}
+
+.single__title {
+  @apply text-4xl my-8;
+}
+
+.single__time {
+  @apply text-gray-400 mb-4 inline-block;
+}
+
+.single__content {
+  @apply prose max-w-none;
+}
+
+.single__drawer-contain {
+  @apply drawer drawer-end fixed right-0 top-32;
+}
+
+.single__drawer-icon {
+  @apply drawer-content inline-block p-2 text-xl;
+  /* @apply border; */
+}
+
+.single__toc {
+  @apply fixed right-[max(5%,calc(50%-40rem))] top-24 bottom-36 w-[325px] overflow-y-auto;
+  @apply prose prose-a:no-underline prose-ul:list-none prose-li:pl-0 prose-ul:pl-4;
+  @apply hidden xl:block;
+  /* @apply border border-cyan-400; */
+}
+
+.single__toc ul {
+  @apply m-0;
+}
+
+/* .single__toc nav > ul {
+  @apply p-0;
+} */
+
+.single__top {
+  @apply fixed right-[max(5%,calc(50%-40rem))] bottom-20;
+}

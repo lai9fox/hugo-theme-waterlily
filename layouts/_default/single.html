@@ -2,17 +2,30 @@
   {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
   {{ $dateHuman := .Date | time.Format "2006-01-01" }}
   {{ $hasTocData := .Fragments.Headings }}
-  <section class="basic-responsive-width py-8 relative">
-    <article class="{{ if $hasTocData }}mr-[350px]{{ end }}">
-      <h1 class="text-4xl my-8">{{ .Title }}</h1>
-      <time class="mb-4 inline-block" datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-      <div class="prose max-w-none">{{.Content }}</div>
+  <section class="single__contain">
+    <article class="{{ if $hasTocData }}single__article{{ end }}">
+      <div class="single__title">{{ .Title }}</div>
+      <time class="single__time" datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+      <div class="single__content">{{ .Content }}</div>
     </article>
-    <div
-      class="fixed right-[max(0px,calc(50%-36rem))] top-32 bottom-36 prose prose-a:no-underline prose-ul:list-none prose-li:pl-0 prose-ul:pl-4 w-[325px] overflow-y-auto">
-      {{ .TableOfContents }}
+    <div class="single__toc">
+      <ul class="menu">
+        {{ .TableOfContents }}
+      </ul>
     </div>
-    <div class="fixed right-[max(0px,calc(50%-34rem))] bottom-20">
+    {{/*  <div class="single__drawer-contain">
+      <input id="toc-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="single__drawer-icon">
+        <label for="toc-drawer">{{ partial "icon.html" "list" }}</label>
+      </div>
+      <div class="drawer-side">
+        <label for="toc-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <ul class="menu p-4 w-80 min-h-full text-base-content">
+          {{ .TableOfContents }}
+        </ul>
+      </div>
+    </div>  */}}
+    <div class="single__top">
       {{ partial "top.html" }}
     </div>
   </section>
