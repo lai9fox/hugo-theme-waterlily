@@ -2011,9 +2011,6 @@ html {
   height: 4rem;
   flex-shrink: 0;
   border-top-width: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* header 样式 */
@@ -2032,6 +2029,7 @@ html {
 }
 
 .header__contain {
+  margin: auto;
   height: 100%;
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
@@ -2047,7 +2045,6 @@ html {
 
 .header__contain {
   min-height: unset;
-  margin: auto;
 }
 
 .header__title {
@@ -2529,31 +2526,31 @@ html {
   padding: 0px;
 }
 
-.header__menu-li {
+.header__menu--expand-li {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .header__menu-li {
+  .header__menu--expand-li {
     display: block;
   }
 }
 
-.header__collasped-menu-li {
+.header__menu--collasped-li {
   position: relative;
   display: inline-block;
 }
 
-.header__collasped-menu-li > *:not(summary):focus {
+.header__menu--collasped-li > *:not(summary):focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
 
-.header__collasped-menu-li .dropdown-content {
+.header__menu--collasped-li .dropdown-content {
   position: absolute;
 }
 
-.header__collasped-menu-li:is(:not(details)) .dropdown-content {
+.header__menu--collasped-li:is(:not(details)) .dropdown-content {
   visibility: hidden;
   opacity: 0;
   transform-origin: top;
@@ -2568,30 +2565,30 @@ html {
   transition-duration: 200ms;
 }
 
-.header__collasped-menu-li .dropdown-content {
+.header__menu--collasped-li .dropdown-content {
   inset-inline-end: 0px;
   bottom: auto;
   top: 100%;
   transform-origin: top;
 }
 
-.header__collasped-menu-li.dropdown-right .dropdown-content {
+.header__menu--collasped-li.dropdown-right .dropdown-content {
   bottom: 0px;
   top: auto;
 }
 
-.header__collasped-menu-li.dropdown-left .dropdown-content {
+.header__menu--collasped-li.dropdown-left .dropdown-content {
   bottom: 0px;
   top: auto;
 }
 
-.header__collasped-menu-li.dropdown-open .dropdown-content,.header__collasped-menu-li:not(.dropdown-hover):focus .dropdown-content,.header__collasped-menu-li:focus-within .dropdown-content {
+.header__menu--collasped-li.dropdown-open .dropdown-content,.header__menu--collasped-li:not(.dropdown-hover):focus .dropdown-content,.header__menu--collasped-li:focus-within .dropdown-content {
   visibility: visible;
   opacity: 1;
 }
 
 @media (hover: hover) {
-  .header__collasped-menu-li.dropdown-hover:hover .dropdown-content {
+  .header__menu--collasped-li.dropdown-hover:hover .dropdown-content {
     visibility: visible;
     opacity: 1;
     --tw-scale-x: 1;
@@ -2600,35 +2597,35 @@ html {
   }
 }
 
-.header__collasped-menu-li:is(details) summary::-webkit-details-marker {
+.header__menu--collasped-li:is(details) summary::-webkit-details-marker {
   display: none;
 }
 
-.join .header__collasped-menu-li .join-item:first-child:not(:last-child),
-  .join *:first-child:not(:last-child) .header__collasped-menu-li .join-item {
+.join .header__menu--collasped-li .join-item:first-child:not(:last-child),
+  .join *:first-child:not(:last-child) .header__menu--collasped-li .join-item {
   border-start-end-radius: inherit;
   border-end-end-radius: inherit;
 }
 
-.header__collasped-menu-li.dropdown-open .dropdown-content,.header__collasped-menu-li:focus .dropdown-content,.header__collasped-menu-li:focus-within .dropdown-content {
+.header__menu--collasped-li.dropdown-open .dropdown-content,.header__menu--collasped-li:focus .dropdown-content,.header__menu--collasped-li:focus-within .dropdown-content {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.header__collasped-menu-li {
+.header__menu--collasped-li {
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
 @media (min-width: 768px) {
-  .header__collasped-menu-li {
+  .header__menu--collasped-li {
     display: none;
   }
 }
 
 @media (hover:hover) {
-  .header__collasped-menu-li-ul li > *:not(ul, .menu-title, details, .btn):active,.header__collasped-menu-li-ul li > *:not(ul, .menu-title, details, .btn).active,.header__collasped-menu-li-ul li > details > summary:active {
+  .header__menu--collasped__list li > *:not(ul, .menu-title, details, .btn):active,.header__menu--collasped__list li > *:not(ul, .menu-title, details, .btn).active,.header__menu--collasped__list li > details > summary:active {
     --tw-bg-opacity: 1;
     background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
     --tw-text-opacity: 1;
@@ -2637,56 +2634,56 @@ html {
 }
 
 @media (hover: hover) {
-  :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
+  :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
     cursor: pointer;
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
   @supports (color: oklch(0 0 0)) {
-    :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
+    :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
       background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
     }
   }
 
-  :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
+  :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
     cursor: pointer;
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
   @supports (color: oklch(0 0 0)) {
-    :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
+    :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
       background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
     }
   }
 
-  :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
+  :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
     cursor: pointer;
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
   @supports (color: oklch(0 0 0)) {
-    :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
+    :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
       background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
     }
   }
 
-  :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
+  :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
     cursor: pointer;
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
   @supports (color: oklch(0 0 0)) {
-    :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
+    :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
       background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
     }
   }
 }
 
-.header__collasped-menu-li-ul {
+.header__menu--collasped__list {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -2695,14 +2692,14 @@ html {
   padding: 0.5rem;
 }
 
-.header__collasped-menu-li-ul :where(li ul) {
+.header__menu--collasped__list :where(li ul) {
   position: relative;
   white-space: nowrap;
   margin-inline-start: 1rem;
   padding-inline-start: 0.5rem;
 }
 
-.header__collasped-menu-li-ul :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)),.header__collasped-menu-li-ul :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+.header__menu--collasped__list :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)),.header__menu--collasped__list :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
   display: grid;
   grid-auto-flow: column;
   align-content: flex-start;
@@ -2714,7 +2711,7 @@ html {
           user-select: none;
 }
 
-.header__collasped-menu-li-ul li.disabled {
+.header__menu--collasped__list li.disabled {
   cursor: not-allowed;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -2722,11 +2719,11 @@ html {
   color: var(--fallback-bc,oklch(var(--bc)/0.3));
 }
 
-.header__collasped-menu-li-ul :where(li > .menu-dropdown:not(.menu-dropdown-show)) {
+.header__menu--collasped__list :where(li > .menu-dropdown:not(.menu-dropdown-show)) {
   display: none;
 }
 
-:where(.header__collasped-menu-li-ul li) {
+:where(.header__menu--collasped__list li) {
   position: relative;
   display: flex;
   flex-shrink: 0;
@@ -2735,11 +2732,11 @@ html {
   align-items: stretch;
 }
 
-:where(.header__collasped-menu-li-ul li) .badge {
+:where(.header__menu--collasped__list li) .badge {
   justify-self: end;
 }
 
-:where(.header__collasped-menu-li-ul li:empty) {
+:where(.header__menu--collasped__list li:empty) {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-bg-opacity)));
   opacity: 0.1;
@@ -2747,7 +2744,7 @@ html {
   height: 1px;
 }
 
-.header__collasped-menu-li-ul :where(li ul):before {
+.header__menu--collasped__list :where(li ul):before {
   position: absolute;
   bottom: 0.75rem;
   inset-inline-start: 0px;
@@ -2759,7 +2756,7 @@ html {
   content: "";
 }
 
-.header__collasped-menu-li-ul :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)),.header__collasped-menu-li-ul :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+.header__menu--collasped__list :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)),.header__menu--collasped__list :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   border-radius: var(--rounded-btn, 0.5rem);
@@ -2777,7 +2774,7 @@ html {
   text-wrap: balance;
 }
 
-:where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn).focus, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn):focus, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):is(summary):not(.active, .btn):focus-visible, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn).focus, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn):focus, :where(.header__collasped-menu-li-ul li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):is(summary):not(.active, .btn):focus-visible {
+:where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn).focus, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn):focus, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):is(summary):not(.active, .btn):focus-visible, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn).focus, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn):focus, :where(.header__menu--collasped__list li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):is(summary):not(.active, .btn):focus-visible {
   cursor: pointer;
   background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
   --tw-text-opacity: 1;
@@ -2786,18 +2783,18 @@ html {
   outline-offset: 2px;
 }
 
-.header__collasped-menu-li-ul li > *:not(ul, .menu-title, details, .btn):active,.header__collasped-menu-li-ul li > *:not(ul, .menu-title, details, .btn).active,.header__collasped-menu-li-ul li > details > summary:active {
+.header__menu--collasped__list li > *:not(ul, .menu-title, details, .btn):active,.header__menu--collasped__list li > *:not(ul, .menu-title, details, .btn).active,.header__menu--collasped__list li > details > summary:active {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
   --tw-text-opacity: 1;
   color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
 }
 
-.header__collasped-menu-li-ul :where(li > details > summary)::-webkit-details-marker {
+.header__menu--collasped__list :where(li > details > summary)::-webkit-details-marker {
   display: none;
 }
 
-.header__collasped-menu-li-ul :where(li > details > summary):after,.header__collasped-menu-li-ul :where(li > .menu-dropdown-toggle):after {
+.header__menu--collasped__list :where(li > details > summary):after,.header__menu--collasped__list :where(li > .menu-dropdown-toggle):after {
   justify-self: end;
   display: block;
   margin-top: -0.5rem;
@@ -2813,12 +2810,12 @@ html {
   pointer-events: none;
 }
 
-.header__collasped-menu-li-ul :where(li > details[open] > summary):after,.header__collasped-menu-li-ul :where(li > .menu-dropdown-toggle.menu-dropdown-show):after {
+.header__menu--collasped__list :where(li > details[open] > summary):after,.header__menu--collasped__list :where(li > .menu-dropdown-toggle.menu-dropdown-show):after {
   transform: rotate(225deg);
   margin-top: 0;
 }
 
-.header__collasped-menu-li-ul {
+.header__menu--collasped__list {
   z-index: 10;
   width: 13rem;
   border-radius: var(--rounded-box, 1rem);
@@ -2833,6 +2830,7 @@ html {
 /* home 样式 */
 
 .home__section {
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -2844,10 +2842,6 @@ html {
   .home__section {
     max-width: 80rem;
   }
-}
-
-.home__section {
-  margin: auto;
 }
 
 /* blog 卡片样式 */

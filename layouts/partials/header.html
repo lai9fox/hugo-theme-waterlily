@@ -4,16 +4,17 @@
   </div>
   <div class="flex-none">
     <ul class="header__menu">
-      <li class="header__collasped-menu-li">
-        <a tabindex="0" role="button">{{ partial "icon" "menus" }}</a>
-        <ul tabindex="0" class="header__collasped-menu-li-ul dropdown-content">
+      <li class="header__menu--collasped-li">
+        <a tabindex="0" role="button">{{ partial "icon.html" "menus" }}</a>
+        {{/*  HACK: dropdown-content 写到 css 样式表里无效  */}}
+        <ul tabindex="0" class="header__menu--collasped__list dropdown-content">
           {{ range site.Menus.main }}
             <li><a href="{{ .URL }}">{{ .Name }}</a></li>
           {{ end }}
         </ul>
       </li>
       {{ range site.Menus.main }}
-        <li class="header__menu-li"><a href="{{ .URL }}">{{ .Name }}</a></li>
+        <li class="header__menu--expand-li"><a href="{{ .URL }}">{{ .Name }}</a></li>
       {{ end }}
     </ul>
   </div>

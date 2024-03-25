@@ -17,5 +17,5 @@
 }
 
 .baseof__footer {
-  @apply h-16 border-t bottom-0 left-0 right-0 shrink-0 common_flex-cross-center;
+  @apply h-16 border-t bottom-0 left-0 right-0 shrink-0;
 }

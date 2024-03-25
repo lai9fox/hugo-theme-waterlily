@@ -11,7 +11,7 @@
 </title>
 
 {{/*  css  */}}
-{{ with resources.Get "css/compiled-tailwind.css" }}
+{{ with resources.Get "css/index-compiled.css" }}
   {{ if $isDev }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ else }}

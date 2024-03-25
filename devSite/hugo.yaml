@@ -1,6 +1,6 @@
 title: WaterLily 睡莲
 # baseURL: https://lai9fox.github.io/blog/
-paginate: 5
+paginate: 10
 hasCJKLanguage: true
 menus:
   main:
@@ -19,6 +19,7 @@ markup:
     ordered: false
     startLevel: 2
 params:
+  paginate: 4
   socials:
     github: 'https://github.com/lai9fox/hugo-theme-waterlily'
     mail: 'mailto:1591765125@qq.com'

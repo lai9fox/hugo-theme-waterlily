@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "hugo:dev": "hugo server -s devSite -t ../..",
-    "twBuild:watch": "npx tailwindcss -i assets/css/original-tailwind.css -o ./assets/css/compiled-tailwind.css --watch"
+    "twBuild:watch": "npx tailwindcss -i assets/css/index.css -o ./assets/css/index-compiled.css --watch"
   },
   "keywords": [],
   "author": "",
